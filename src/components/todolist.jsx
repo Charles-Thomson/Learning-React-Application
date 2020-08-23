@@ -20,6 +20,10 @@ const dialogStyles = {
 
 };
 
+function test(){
+  return true;
+}
+
 
 
 
