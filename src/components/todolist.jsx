@@ -20,7 +20,7 @@ const dialogStyles = {
 
 };
 
-function foo() {
+function fooot() {
   return null;
 }
 
