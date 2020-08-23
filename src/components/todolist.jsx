@@ -20,11 +20,6 @@ const dialogStyles = {
 
 };
 
-function fooot() {
-  return null;
-}
-
-
 class todolist extends Component {
     state = { 
         editedTask: "",
