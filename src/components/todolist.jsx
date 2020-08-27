@@ -30,13 +30,11 @@ function changes(){
 
 class todolist extends Component {
     state = { 
-        editedTask: "",
+        taskIDCounter: 1,
         newTaskWindowOpen: false,
         todolist: [
-            {id: 1 , task: "test name ", completed: false, taskEditorOpen: false },
-            {id: 2 , task: "0", completed: false, taskEditorOpen: false},
-            {id: 3 , task: "asdf", completed: false, taskEditorOpen: false},
-            {id: 4 , task: "1234", completed: false, taskEditorOpen: false}
+            {id: 0 , task: "test name ", completed: false, taskEditorOpen: false }
+            
         ]
      }
 
@@ -44,6 +42,12 @@ class todolist extends Component {
         console.log("Delete handler called - ", taskId)
         const updatedToDoList = this.state.todolist.filter(c => c.id !== taskId);
         this.setState({todolist: updatedToDoList});
+    }
+
+    incrementTaskID = () =>{
+      let { taskIDCounter } = this.state
+      this.setState({taskIDCounter: taskIDCounter + 1});
+      return taskIDCounter;
     }
 
     // Make the change to the slected task
@@ -67,9 +71,7 @@ class todolist extends Component {
           });
           console.log(this.state.todolist[0-2]);
           this.setState({todolist: newList});
-          console.table([newList]);
-          
-          
+          console.table([newList]); 
         }
     // Set the state of the task editor being closed
     handleOpenEditTaskDialog = (taskId) => {
@@ -127,9 +129,10 @@ class todolist extends Component {
     handleNewTask = (newTaskDescription) =>{
       let tasklistlength = this.state.todolist.length;
       console.log(tasklistlength);
+      
 
       const newTask = {
-        id: tasklistlength + 1,
+        id: this.incrementTaskID(),
         task: newTaskDescription,
         completed: false,
         taskEditorOpen: false
